@@ -48,6 +48,7 @@ docker run -d \
   -e SUB_URL=https://your-subscription-url.com/config \
   -e SUB_CRON="0 */6 * * *" \
   -e SECRET=your-dashboard-password \
+  -e ALLOW_LAN=true \
   gangz1o/glash:latest
 ```
 
@@ -70,6 +71,7 @@ services:
       - SUB_URL=https://your-subscription-url.com/config
       - SUB_CRON=0 */6 * * *
       - SECRET=your-dashboard-password
+      - ALLOW_LAN=true
 ```
 
 ### 模式二：本地配置模式
@@ -105,6 +107,7 @@ services:
       - ./config.yaml:/root/.config/mihomo/config.yaml:ro
     environment:
       - TZ=Asia/Shanghai
+      - ALLOW_LAN=true
 ```
 
 ### 指定架构下载
