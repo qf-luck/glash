@@ -7,8 +7,6 @@ FROM alpine:3.19 AS builder
 # 设置版本变量
 ARG MIHOMO_VERSION=v1.19.20
 ARG METACUBEXD_VERSION=v1.241.3
-ARG TARGETPLATFORM
-ARG TARGETARCH
 
 # 安装构建依赖
 RUN apk add --no-cache curl unzip ca-certificates
