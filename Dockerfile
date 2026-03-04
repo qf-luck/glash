@@ -6,7 +6,7 @@ FROM --platform=$BUILDPLATFORM alpine:3.19 AS builder
 
 # 设置版本变量
 ARG MIHOMO_VERSION=v1.19.20
-ARG METACUBEXD_VERSION=v1.241.2
+ARG METACUBEXD_VERSION=v1.241.3
 ARG TARGETPLATFORM
 ARG TARGETARCH
 
@@ -23,7 +23,7 @@ RUN case "${TARGETARCH}" in \
         *) echo "Unsupported architecture: ${TARGETARCH}" && exit 1 ;; \
     esac && \
     echo "Downloading mihomo for ${ARCH}..." && \
-    curl -fsSL "https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-${ARCH}-${MIHOMO_VERSION}.gz" -o mihomo.gz && \
+    curl -fsSL "https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-${ARCH}-v2-${MIHOMO_VERSION}.gz" -o mihomo.gz && \
     gunzip mihomo.gz && \
     chmod +x mihomo
 
