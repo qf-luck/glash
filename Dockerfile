@@ -16,23 +16,23 @@ WORKDIR /build
 # 根据目标架构下载对应的 mihomo 二进制
 RUN ARCH="amd64" && \
     echo "Downloading mihomo for ${ARCH}..." && \
-    curl -fsSL "https://proxy.caiji.de/https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-${ARCH}-v2-${MIHOMO_VERSION}.gz" -o mihomo.gz && \
+    curl -fsSL "https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-${ARCH}-v2-${MIHOMO_VERSION}.gz" -o mihomo.gz && \
     gunzip mihomo.gz && \
     chmod +x mihomo
 
 # 下载 MetacubexD Dashboard (前端资源与架构无关)
-RUN curl -fsSL "https://proxy.caiji.de/https://github.com/MetaCubeX/metacubexd/releases/download/${METACUBEXD_VERSION}/compressed-dist.tgz" -o dashboard.tgz && \
+RUN curl -fsSL "https://github.com/MetaCubeX/metacubexd/releases/download/${METACUBEXD_VERSION}/compressed-dist.tgz" -o dashboard.tgz && \
     mkdir -p /build/ui && \
     tar -xzf dashboard.tgz -C /build/ui
 
 # 下载 GeoIP 和 GeoSite 数据库（预打包，避免运行时下载问题）
 RUN mkdir -p /build/geodata && \
     echo "Downloading GeoIP database..." && \
-    curl -fsSL "https://proxy.caiji.de/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb" -o /build/geodata/geoip.metadb && \
+    curl -fsSL "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb" -o /build/geodata/geoip.metadb && \
     echo "Downloading GeoSite database..." && \
-    curl -fsSL "https://proxy.caiji.de/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat" -o /build/geodata/geosite.dat && \
+    curl -fsSL "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat" -o /build/geodata/geosite.dat && \
     echo "Downloading Country.mmdb..." && \
-    curl -fsSL "https://proxy.caiji.de/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country.mmdb" -o /build/geodata/country.mmdb
+    curl -fsSL "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country.mmdb" -o /build/geodata/country.mmdb
 
 # 最终镜像
 FROM alpine:3.19
