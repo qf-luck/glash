@@ -2,7 +2,7 @@
 # 基于最新 Mihomo 内核 + MetacubexD Dashboard
 # 作者: gangz1o
 
-FROM --platform=$BUILDPLATFORM alpine:3.19 AS builder
+FROM alpine:3.19 AS builder
 
 # 设置版本变量
 ARG MIHOMO_VERSION=v1.19.20
@@ -16,12 +16,7 @@ RUN apk add --no-cache curl unzip ca-certificates
 WORKDIR /build
 
 # 根据目标架构下载对应的 mihomo 二进制
-RUN case "${TARGETARCH}" in \
-        "amd64") ARCH="amd64" ;; \
-        "arm64") ARCH="arm64" ;; \
-        "arm") ARCH="armv7" ;; \
-        *) echo "Unsupported architecture: ${TARGETARCH}" && exit 1 ;; \
-    esac && \
+RUN ARCH="amd64" && \
     echo "Downloading mihomo for ${ARCH}..." && \
     curl -fsSL "https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-${ARCH}-v2-${MIHOMO_VERSION}.gz" -o mihomo.gz && \
     gunzip mihomo.gz && \
